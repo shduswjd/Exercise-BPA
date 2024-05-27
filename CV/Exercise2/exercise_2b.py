@@ -189,7 +189,8 @@ def get_score_map(svm, hog, window_shape):
 def score_map_to_detections(score_map, threshold):
     # YOUR CODE HERE
     score_map_np = np.array(score_map)
-    ys, xs = np.where(score_map > threshold) #여기서 에러뜸
+    score_map_np = score_map_np.astype(np.float32)
+    ys, xs = np.where(score_map_np > threshold)
     scores = score_map_np[ys, xs]
     return ys, xs, scores
 
